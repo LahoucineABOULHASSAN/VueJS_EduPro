@@ -85,4 +85,14 @@
   }
 </script>
 
-<style></style>
+<style scoped>
+  /*  **************** Header style **************** */
+  header .carousel .carousel-caption {
+    bottom: 10%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    border-radius: 12px;
+    color: var(--bs-light);
+    background-color: #00000062;
+  }
+</style>

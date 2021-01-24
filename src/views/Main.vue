@@ -1,5 +1,5 @@
 <template>
-  <main><router-view /></main>
+  <main class="wrapper"><router-view /></main>
 </template>
 
 <script>
@@ -8,3 +8,8 @@
     components: {},
   }
 </script>
+<style scoped>
+  .wrapper {
+    padding: 3rem 7%;
+  }
+</style>
