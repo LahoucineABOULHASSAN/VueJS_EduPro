@@ -1,10 +1,10 @@
 <template>
-  <h1>Home</h1>
+  <main><router-view /></main>
 </template>
 
 <script>
   export default {
-    name: 'Home',
+    name: 'Main',
     components: {},
   }
 </script>

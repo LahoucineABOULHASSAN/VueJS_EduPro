@@ -1,13 +1,21 @@
 <template>
   <Nav />
-  <router-view />
+  <Header />
+  <Main />
+  <Footer />
 </template>
 <script>
   import Nav from './components/Nav'
+  import Header from './components/Header'
+  import Main from './views/Main'
+  import Footer from './components/Footer'
   export default {
     name: 'App',
     components: {
       Nav,
+      Header,
+      Main,
+      Footer,
     },
   }
 </script>
