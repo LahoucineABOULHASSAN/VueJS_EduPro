@@ -21,7 +21,7 @@
         :src="course.teacher.image"
         :alt="course.teacher.name"
       />
-      <a class="card-link" :href="'#' + name">
+      <a class="card-link" :href="'#' + course.teacher.name">
         {{ course.teacher.name }}
       </a>
       <button :class="course.premium ? 'btn btn-success' : 'btn btn-info'">

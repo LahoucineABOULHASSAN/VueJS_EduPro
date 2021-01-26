@@ -8,11 +8,12 @@
     <div v-if="data">
       <div class="row mb-4">
         <Course
-          v-for="course in data.slice(0, 4)"
+          v-for="course in data.slice(0, 3)"
           :key="course.id"
           :course="course"
         />
       </div>
+      <Pages :num="Math.ceil(data.length / 3)" />
     </div>
     <div v-else>
       <p class="alert text-center alert-danger" role="alert">
@@ -39,6 +40,7 @@
 <script>
   import Course from './Course'
   import SearchForm from '../../components/main/SearchForm'
+  import Pages from '../../components/main/Pages'
   import getData from '../../composables/getData'
   const URL = process.env.VUE_APP_COURSES_URL
 
@@ -46,6 +48,7 @@
     name: 'Courses',
     components: {
       SearchForm,
+      Pages,
       Course,
     },
     setup() {
@@ -83,21 +86,5 @@
   }
   #courses .info .btn {
     float: right;
-  }
-  #courses nav {
-    width: fit-content;
-    margin: 0 auto;
-  }
-  #courses nav .page-link {
-    color: var(--bs-success);
-  }
-  #courses nav .page-item.active .page-link {
-    background-color: var(--bs-success);
-    color: var(--bs-dark);
-    border-color: none;
-  }
-  #courses nav .page-item.disabled .page-link {
-    background-color: var(--bs-light);
-    color: var(--bs-secondary);
   }
 </style>
