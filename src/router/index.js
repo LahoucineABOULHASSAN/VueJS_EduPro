@@ -6,8 +6,7 @@ import Courses from '../views/Courses.vue'
 const routes = [
   {
     path: '/',
-    name: 'Courses',
-    component: Courses,
+    redirect: '/courses',
   },
   {
     path: '/teachers',

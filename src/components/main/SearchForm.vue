@@ -31,4 +31,17 @@
   }
 </script>
 
-<style></style>
+<style scoped>
+  form {
+    width: 60%;
+    margin: 0 auto;
+  }
+  form .form-control {
+    width: 100%;
+    border: 1px solid var(--bs-dark);
+    border-radius: 5px;
+    background-color: var(--bs-dark);
+    color: #fff;
+    margin: 1rem 0;
+  }
+</style>
