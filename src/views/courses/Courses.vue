@@ -1,17 +1,26 @@
 <template>
   <section id="courses">
-    <h2 className="text-center">Popular Courses</h2>
-    <h5 className="text-center">
+    <h2 class="text-center">Popular Courses</h2>
+    <h5 class="text-center">
       Upgrade your skills with the newest courses
     </h5>
     <SearchForm :options="data.slice(0, 4)" />
+    <div v-if="data">
+      <div class="row mb-4">
+        <Course
+          v-for="course in data.slice(0, 4)"
+          :key="course.id"
+          :course="course"
+        />
+      </div>
+    </div>
+    <div v-else>
+      <p class="alert text-center alert-danger" role="alert">
+        No Courses Found!!
+      </p>
+    </div>
     <!-- {courses ? (
         <>
-          <div className="row mb-4">
-            {courses.map((course) => (
-              <Course key={course.id} course={course} />
-            ))}
-          </div>
           {page.pageFiltering && filteredCourses ? (
             <Pagination
               arr={filteredCourses}
@@ -23,16 +32,12 @@
               numPages={Math.ceil(getcourses.length / 3)}
             />
           )}
-        </>
-      ) : (
-        <p className="alert text-center alert-danger" role="alert">
-          No Courses Found!!
-        </p>
-      )} -->
+        </> -->
   </section>
 </template>
 
 <script>
+  import Course from './Course'
   import SearchForm from '../../components/main/SearchForm'
   import getData from '../../composables/getData'
   const URL = process.env.VUE_APP_COURSES_URL
@@ -41,6 +46,7 @@
     name: 'Courses',
     components: {
       SearchForm,
+      Course,
     },
     setup() {
       const { data, error, fetchData } = getData(URL)
