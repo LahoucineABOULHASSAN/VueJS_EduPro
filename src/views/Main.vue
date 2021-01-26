@@ -17,14 +17,18 @@
       </li>
     </ul>
     <router-view />
+    <Features />
+    <Services />
   </main>
 </template>
 
 <script>
+  import Features from '../components/main/Features'
+  import Services from '../components/main/Services'
   import { ref } from 'vue'
   export default {
     name: 'Main',
-    components: {},
+    components: { Features, Services },
     setup() {
       const courses = ref(null)
       const teachers = ref(null)
