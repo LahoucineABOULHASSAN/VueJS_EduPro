@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Courses from '../views/courses/Courses.vue'
 import Teachers from '../views/teachers/Teachers.vue'
+import Reviews from '../views/reviews/Reviews.vue'
 
 const routes = [
   {
@@ -8,14 +9,23 @@ const routes = [
     redirect: '/courses',
   },
   {
+    path: '/courses',
+    name: 'Courses',
+    component: Courses,
+  },
+  {
     path: '/teachers',
     name: 'Teachers',
     component: Teachers,
   },
   {
-    path: '/courses',
-    name: 'Courses',
-    component: Courses,
+    path: '/reviews',
+    name: 'Reviews',
+    component: Reviews,
+  },
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/courses',
   },
 ]
 

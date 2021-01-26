@@ -1,7 +1,7 @@
 <template>
   <main class="wrapper">
     <ul class="nav justify-content-center">
-      <li :class="courseClass" @click="isActive(courses)" ref="courses">
+      <li :class="'nav-item'" @click="isActive">
         <router-link
           :to="{ name: 'Courses' }"
           class="nav-link"
@@ -10,44 +10,31 @@
           >Courses</router-link
         >
       </li>
-      <li :class="teacherClass" @click="isActive(teachers)" ref="teachers">
+      <li :class="'nav-item'" @click="isActive">
         <router-link :to="{ name: 'Teachers' }" class="nav-link" href="#"
           >Teachers</router-link
+        >
+      </li>
+      <li :class="'nav-item'" @click="isActive">
+        <router-link :to="{ name: 'Reviews' }" class="nav-link" href="#"
+          >Reviews</router-link
         >
       </li>
     </ul>
     <router-view />
     <Features />
-    <Reviews />
     <Services />
   </main>
 </template>
 
 <script>
   import Features from '../components/main/Features'
-  import Reviews from '../components/main/Reviews'
   import Services from '../components/main/Services'
-  import { ref } from 'vue'
   export default {
     name: 'Main',
-    components: { Features, Reviews, Services },
+    components: { Features, Services },
     setup() {
-      const courses = ref(null)
-      const teachers = ref(null)
-      const courseClass = ref('nav-item active')
-      const teacherClass = ref('nav-item')
-      const isActive = (elem) => {
-        const val = elem === courses.value ? 'courses' : 'teachers'
-        if (val === 'courses') {
-          courseClass.value = 'nav-item active'
-          teacherClass.value = 'nav-item'
-        }
-        if (val === 'teachers') {
-          courseClass.value = 'nav-item'
-          teacherClass.value = 'nav-item active'
-        }
-      }
-      return { courses, teachers, courseClass, teacherClass, isActive }
+      return {}
     },
   }
 </script>
