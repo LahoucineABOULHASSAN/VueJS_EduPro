@@ -4,7 +4,7 @@
     <h5 className="text-center">
       Upgrade your skills with the newest courses
     </h5>
-    <SearchForm :options="options" />
+    <SearchForm :options="data.slice(0, 4)" />
     <!-- {courses ? (
         <>
           <div className="row mb-4">
@@ -34,19 +34,18 @@
 
 <script>
   import SearchForm from '../components/main/SearchForm'
-  import { ref } from 'vue'
+  import getData from '../composables/getData'
+  const URL = process.env.VUE_APP_COURSES_URL
+
   export default {
     name: 'Courses',
     components: {
       SearchForm,
     },
     setup() {
-      const options = ref([
-        { id: 1, title: 'title1' },
-        { id: 2, title: 'title2' },
-        { id: 2, title: 'title2' },
-      ])
-      return { options }
+      const { data, error, fetchData } = getData(URL)
+      fetchData()
+      return { data, error, fetchData }
     },
   }
 </script>

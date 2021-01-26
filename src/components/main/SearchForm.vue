@@ -12,7 +12,7 @@
     <datalist id="datalistOptions">
       <option
         v-for="option in options"
-        :value="option.title"
+        :value="option.title ? option.title : option.name"
         :key="option.id"
       />
     </datalist>
