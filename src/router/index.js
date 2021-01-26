@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Main from '../views/Main.vue'
-import Teachers from '../views/Teachers.vue'
-import Courses from '../views/Courses.vue'
+import Courses from '../views/courses/Courses.vue'
+import Teachers from '../views/teachers/Teachers.vue'
 
 const routes = [
   {

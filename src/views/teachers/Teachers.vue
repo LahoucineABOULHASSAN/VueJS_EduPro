@@ -11,8 +11,8 @@
 </template>
 
 <script>
-  import SearchForm from '../components/main/SearchForm'
-  import getData from '../composables/getData'
+  import SearchForm from '../../components/main/SearchForm'
+  import getData from '../../composables/getData'
   const URL = process.env.VUE_APP_TEACHERS_URL
   // import { ref } from 'vue'
 

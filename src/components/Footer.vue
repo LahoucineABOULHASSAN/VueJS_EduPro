@@ -9,8 +9,8 @@
 </template>
 
 <script>
-  import About from '../views/About'
-  import ContactUs from '../views/ContactUs'
+  import About from './footer/About'
+  import ContactUs from './footer/ContactUs'
   import Infos from './footer/Infos'
   export default {
     name: 'Footer',
