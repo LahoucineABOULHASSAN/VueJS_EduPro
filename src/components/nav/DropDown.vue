@@ -11,22 +11,14 @@
     </a>
     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
       <li>
-        <router-link
-          :to="{ name: 'About' }"
-          class="dropdown-item"
-          @click="isActive"
-        >
+        <a href="#about-us" class="dropdown-item" @click="isActive">
           About
-        </router-link>
+        </a>
       </li>
       <li>
-        <router-link
-          :to="{ name: 'ContactUs' }"
-          class="dropdown-item"
-          @click="isActive"
-        >
+        <a href="contact-us" class="dropdown-item" @click="isActive">
           Contact Us
-        </router-link>
+        </a>
       </li>
       <li>
         <hr class="dropdown-divider" />

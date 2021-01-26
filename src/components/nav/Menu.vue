@@ -1,22 +1,18 @@
 <template>
   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
-      <router-link
-        :to="{ name: 'Courses' }"
+      <a
+        href="#home"
         class="nav-link isActive"
         aria-current="page"
         @click="isActive"
-        >Courses</router-link
+        >Courses</a
       >
     </li>
     <li class="nav-item">
-      <router-link
-        :to="{ name: 'Teachers' }"
-        class="nav-link"
-        @click="isActive"
-      >
+      <a href="#home" class="nav-link" @click="isActive">
         Teachers
-      </router-link>
+      </a>
     </li>
     <li class="nav-item">
       <a href="#reviews" class="nav-link" @click="isActive">
