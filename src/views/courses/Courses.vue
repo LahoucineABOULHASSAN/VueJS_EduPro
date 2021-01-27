@@ -4,11 +4,15 @@
     <h5 class="text-center">
       Upgrade your skills with the newest courses
     </h5>
-    <SearchForm :options="data.slice(0, 4)" />
+    <SearchForm
+      :options="data.slice(0, 4)"
+      :modelValue="searchItem"
+      @update:modelValue="searchItem = $event.toLowerCase()"
+    />
     <div v-if="data">
       <div class="row mb-4">
         <Course
-          v-for="course in data.slice(0, 3)"
+          v-for="course in filterResults"
           :key="course.id"
           :course="course"
         />
@@ -20,20 +24,6 @@
         No Courses Found!!
       </p>
     </div>
-    <!-- {courses ? (
-        <>
-          {page.pageFiltering && filteredCourses ? (
-            <Pagination
-              arr={filteredCourses}
-              numPages={Math.ceil(filteredCourses.length / 3)}
-            />
-          ) : (
-            <Pagination
-              arr={getcourses}
-              numPages={Math.ceil(getcourses.length / 3)}
-            />
-          )}
-        </> -->
   </section>
 </template>
 
@@ -42,6 +32,7 @@
   import SearchForm from '../../components/main/SearchForm'
   import Pages from '../../components/main/Pages'
   import getData from '../../composables/getData'
+  import { computed, ref } from 'vue'
   const URL = process.env.VUE_APP_COURSES_URL
 
   export default {
@@ -54,7 +45,13 @@
     setup() {
       const { data, error, fetchData } = getData(URL)
       fetchData()
-      return { data, error, fetchData }
+      const searchItem = ref('')
+      const filterResults = computed(() => {
+        return data.value.filter((course) =>
+          course.title.toLowerCase().includes(searchItem.value)
+        )
+      })
+      return { data, error, fetchData, searchItem, filterResults }
     },
   }
 </script>

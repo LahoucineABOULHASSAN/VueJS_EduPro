@@ -2,11 +2,15 @@
   <section id="teachers">
     <h2 class="text-center">Teachers</h2>
     <h5 class="text-center">Meet Professional Teachers</h5>
-    <SearchForm :options="data.slice(0, 4)" />
+    <SearchForm
+      :options="data.slice(0, 4)"
+      :modelValue="searchItem"
+      @update:modelValue="searchItem = $event.toLowerCase()"
+    />
     <div v-if="data">
       <div class="row">
         <Teacher
-          v-for="teacher in data.slice(0, 2)"
+          v-for="teacher in filterResults"
           :key="teacher.id"
           :teacher="teacher"
         />
@@ -26,8 +30,8 @@
   import SearchForm from '../../components/main/SearchForm'
   import Pages from '../../components/main/Pages'
   import getData from '../../composables/getData'
+  import { ref, computed } from 'vue'
   const URL = process.env.VUE_APP_TEACHERS_URL
-  // import { ref } from 'vue'
 
   export default {
     name: 'Teachers',
@@ -39,7 +43,13 @@
     setup() {
       const { data, error, fetchData } = getData(URL)
       fetchData()
-      return { data, error, fetchData }
+      const searchItem = ref('')
+      const filterResults = computed(() => {
+        return data.value.filter((teacher) =>
+          teacher.name.toLowerCase().includes(searchItem.value)
+        )
+      })
+      return { data, error, fetchData, searchItem, filterResults }
     },
   }
 </script>

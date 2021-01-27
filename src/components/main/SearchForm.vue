@@ -20,13 +20,16 @@
 </template>
 
 <script>
-  import { ref } from 'vue'
+  import filterData from '../../composables/filterData'
+  import { ref, computed } from 'vue'
   export default {
     name: 'SearchForm',
-    props: { options: Array },
-    setup(props) {
-      const item = ref('')
-      return { item }
+    props: { options: Array, modelValue: String },
+    setup(props, { emit }) {
+      const item = filterData(props, emit)
+      return {
+        item,
+      }
     },
   }
 </script>
