@@ -17,7 +17,7 @@
           :course="course"
         />
       </div>
-      <Pages :num="Math.ceil(data.length / 3)" />
+      <Pages :num="Math.ceil(filterResults.length / 3)" />
     </div>
     <div v-else>
       <p class="alert text-center alert-danger" role="alert">
@@ -32,6 +32,7 @@
   import SearchForm from '../../components/main/SearchForm'
   import Pages from '../../components/main/Pages'
   import getData from '../../composables/getData'
+  import paginateData from '../../composables/paginateData'
   import { computed, ref } from 'vue'
   const URL = process.env.VUE_APP_COURSES_URL
 

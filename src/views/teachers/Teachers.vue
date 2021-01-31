@@ -21,7 +21,7 @@
         No Data Found!!
       </p>
     </div>
-    <Pages :num="Math.ceil(data.length / 3)" />
+    <Pages :num="Math.ceil(filterResults.length / 3)" />
   </section>
 </template>
 
