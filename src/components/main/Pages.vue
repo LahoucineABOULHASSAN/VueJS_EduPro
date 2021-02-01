@@ -5,7 +5,12 @@
         <button
           class="page-link previous"
           value="previous"
-          @click="handleArrows"
+          @click="
+            () => {
+              handleArrows('previous')
+              $emit('changePage', page.current)
+            }
+          "
         >
           &laquo;
         </button>
@@ -15,10 +20,29 @@
         :class="page.current === i ? 'page-item active' : 'page-item'"
         :key="i"
       >
-        <button class="page-link" @click="handleButton">{{ i }}</button>
+        <button
+          class="page-link"
+          @click="
+            () => {
+              handleButton(i)
+              $emit('changePage', i)
+            }
+          "
+        >
+          {{ i }}
+        </button>
       </li>
       <li :class="!page.next ? 'page-item disabled' : 'page-item'">
-        <button class="page-link next" value="next" @click="handleArrows">
+        <button
+          class="page-link next"
+          value="next"
+          @click="
+            () => {
+              handleArrows('next')
+              $emit('changePage', page.current)
+            }
+          "
+        >
           &raquo;
         </button>
       </li>
@@ -37,16 +61,16 @@
     setup(props) {
       const { page, pagination } = handlePage()
       pagination({ num: props.num, type: 'CURRENT' })
-      const handleArrows = (event) => {
-        if (event.target.value === 'previous') {
+      const handleArrows = (val) => {
+        if (val === 'previous') {
           pagination({ num: props.num, type: 'PREVIOUS' })
         }
-        if (event.target.value === 'next') {
+        if (val === 'next') {
           pagination({ num: props.num, type: 'NEXT' })
         }
       }
-      const handleButton = (event) => {
-        page.value.current = parseInt(event.target.innerText)
+      const handleButton = (i) => {
+        page.value.current = i
         pagination({ num: props.num, type: 'CURRENT' })
       }
       onMounted(() => {
@@ -54,7 +78,7 @@
           page.value.next = 2
         }
       })
-      return { page, handleButton, handleArrows, handlePage }
+      return { page, handleArrows, handleButton }
     },
   }
 </script>

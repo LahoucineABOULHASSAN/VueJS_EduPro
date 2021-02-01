@@ -17,7 +17,11 @@
           :course="course"
         />
       </div>
-      <Pages :num="Math.ceil(filterResults.length / 3)" />
+      <Pages
+        v-if="Math.ceil(numPages / 3)"
+        :num="Math.ceil(numPages / 3)"
+        @changePage="handlePage($event)"
+      />
     </div>
     <div v-else>
       <p class="alert text-center alert-danger" role="alert">
@@ -44,15 +48,32 @@
       Course,
     },
     setup() {
+      const searchItem = ref('')
+      const currentPage = ref(1)
+      const numPages = ref(null)
       const { data, error, fetchData } = getData(URL)
       fetchData()
-      const searchItem = ref('')
+      const handlePage = (i) => {
+        currentPage.value = i
+      }
       const filterResults = computed(() => {
-        return data.value.filter((course) =>
+        const arr = data.value.filter((course) =>
           course.title.toLowerCase().includes(searchItem.value)
         )
+        numPages.value = arr.length
+        const res = paginateData(arr, currentPage.value)
+        return res
       })
-      return { data, error, fetchData, searchItem, filterResults }
+      return {
+        data,
+        error,
+        fetchData,
+        searchItem,
+        currentPage,
+        numPages,
+        filterResults,
+        handlePage,
+      }
     },
   }
 </script>
