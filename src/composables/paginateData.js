@@ -1,5 +1,4 @@
-const paginateData = (arr, part) => {
-  const chunk_size = 3
+const paginateData = (arr, part, chunk_size) => {
   let parts = []
   let myChunk = []
   for (let index = 0; index < arr.length; index += chunk_size) {

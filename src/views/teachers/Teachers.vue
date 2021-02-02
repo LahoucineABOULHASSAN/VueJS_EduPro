@@ -1,6 +1,5 @@
 <template>
   <section id="teachers">
-    <h2 class="text-center">Teachers</h2>
     <h5 class="text-center">Meet Professional Teachers</h5>
     <SearchForm
       :options="data.slice(0, 4)"
@@ -21,7 +20,11 @@
         No Data Found!!
       </p>
     </div>
-    <Pages :num="Math.ceil(filterResults.length / 3)" />
+    <Pages
+      v-if="Math.ceil(numPages / 4)"
+      :num="Math.ceil(numPages / 4)"
+      @changePage="handlePagination($event)"
+    />
   </section>
 </template>
 
@@ -31,6 +34,7 @@
   import Pages from '../../components/main/Pages'
   import getData from '../../composables/getData'
   import { ref, computed } from 'vue'
+  import paginateData from '../../composables/paginateData'
   const URL = process.env.VUE_APP_TEACHERS_URL
 
   export default {
@@ -41,15 +45,32 @@
       Pages,
     },
     setup() {
+      const searchItem = ref('')
+      const currentPage = ref(1)
+      const numPages = ref(null)
       const { data, error, fetchData } = getData(URL)
       fetchData()
-      const searchItem = ref('')
+      const handlePagination = (i) => {
+        currentPage.value = i
+      }
       const filterResults = computed(() => {
-        return data.value.filter((teacher) =>
+        const arr = data.value.filter((teacher) =>
           teacher.name.toLowerCase().includes(searchItem.value)
         )
+        numPages.value = arr.length
+        const res = paginateData(arr, currentPage.value, 4)
+        return res
       })
-      return { data, error, fetchData, searchItem, filterResults }
+      return {
+        data,
+        error,
+        fetchData,
+        searchItem,
+        currentPage,
+        numPages,
+        filterResults,
+        handlePagination,
+      }
     },
   }
 </script>

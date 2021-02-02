@@ -1,7 +1,6 @@
 <template>
   <section id="reviews">
-    <h2 class="text-center">Student Reviews</h2>
-    <h5 class="text-center mb-4">Student Reviews</h5>
+    <h5 class="text-center mb-4">Our Student's Reviews</h5>
     <div class="row">
       <Review v-for="review in data" :key="review.id" :review="review" />
     </div>

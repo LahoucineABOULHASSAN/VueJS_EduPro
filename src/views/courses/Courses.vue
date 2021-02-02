@@ -1,6 +1,5 @@
 <template>
   <section id="courses">
-    <h2 class="text-center">Popular Courses</h2>
     <h5 class="text-center">
       Upgrade your skills with the newest courses
     </h5>
@@ -37,7 +36,7 @@
   import Pages from '../../components/main/Pages'
   import getData from '../../composables/getData'
   import paginateData from '../../composables/paginateData'
-  import { computed, ref, watch } from 'vue'
+  import { computed, ref } from 'vue'
   const URL = process.env.VUE_APP_COURSES_URL
 
   export default {
@@ -61,7 +60,7 @@
           course.title.toLowerCase().includes(searchItem.value)
         )
         numPages.value = arr.length
-        const res = paginateData(arr, currentPage.value)
+        const res = paginateData(arr, currentPage.value, 3)
         return res
       })
 
