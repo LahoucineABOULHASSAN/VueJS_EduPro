@@ -1,7 +1,7 @@
 <template>
   <main class="wrapper">
     <ul class="nav justify-content-center">
-      <li :class="'nav-item'" @click="isActive">
+      <li class="nav-item">
         <router-link
           :to="{ name: 'Courses' }"
           class="nav-link"
@@ -10,12 +10,12 @@
           >Courses</router-link
         >
       </li>
-      <li :class="'nav-item'" @click="isActive">
+      <li class="nav-item">
         <router-link :to="{ name: 'Teachers' }" class="nav-link" href="#"
           >Teachers</router-link
         >
       </li>
-      <li :class="'nav-item'" @click="isActive">
+      <li class="nav-item">
         <router-link :to="{ name: 'Reviews' }" class="nav-link" href="#"
           >Reviews</router-link
         >
@@ -43,9 +43,6 @@
     padding: 3rem 7%;
   }
   ul li {
-    /* text-transform: uppercase; */
-    /* border-bottom: 4px solid var(--bs-secondary); */
-    /* margin-right: 1rem; */
     position: relative;
   }
   li a {
@@ -59,17 +56,18 @@
     outline: 0;
     padding-bottom: 25px;
   }
-  li.active a {
+  li a.router-link-active {
     color: var(--bs-info);
   }
-  li.active a:before {
+  li a.router-link-active:before {
     border-color: var(--bs-info);
   }
-  li.active a:after {
+  li a.router-link-active:after {
     background-color: var(--bs-info);
     width: 15px;
     height: 15px;
   }
+
   li a:before {
     transition: all 0.3s;
     width: 25px;
