@@ -20,7 +20,7 @@
       <Pages
         v-if="Math.ceil(numPages / 3)"
         :num="Math.ceil(numPages / 3)"
-        @changePage="handlePage($event)"
+        @changePage="handlePagination($event)"
       />
     </div>
     <div v-else>
@@ -37,7 +37,7 @@
   import Pages from '../../components/main/Pages'
   import getData from '../../composables/getData'
   import paginateData from '../../composables/paginateData'
-  import { computed, ref } from 'vue'
+  import { computed, ref, watch } from 'vue'
   const URL = process.env.VUE_APP_COURSES_URL
 
   export default {
@@ -53,7 +53,7 @@
       const numPages = ref(null)
       const { data, error, fetchData } = getData(URL)
       fetchData()
-      const handlePage = (i) => {
+      const handlePagination = (i) => {
         currentPage.value = i
       }
       const filterResults = computed(() => {
@@ -64,6 +64,7 @@
         const res = paginateData(arr, currentPage.value)
         return res
       })
+
       return {
         data,
         error,
@@ -72,7 +73,7 @@
         currentPage,
         numPages,
         filterResults,
-        handlePage,
+        handlePagination,
       }
     },
   }

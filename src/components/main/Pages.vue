@@ -32,7 +32,7 @@
           {{ i }}
         </button>
       </li>
-      <li :class="!page.next ? 'page-item disabled' : 'page-item'">
+      <li :class="!page.next || num <= 1 ? 'page-item disabled' : 'page-item'">
         <button
           class="page-link next"
           value="next"
@@ -52,7 +52,7 @@
 
 <script>
   import handlePage from '../../composables/handlePage'
-  import { onMounted, ref } from 'vue'
+  import { onMounted, onUpdated, ref, watch } from 'vue'
   export default {
     name: 'Pages',
     props: {
@@ -60,7 +60,6 @@
     },
     setup(props) {
       const { page, pagination } = handlePage()
-      pagination({ num: props.num, type: 'CURRENT' })
       const handleArrows = (val) => {
         if (val === 'previous') {
           pagination({ num: props.num, type: 'PREVIOUS' })
@@ -73,10 +72,10 @@
         page.value.current = i
         pagination({ num: props.num, type: 'CURRENT' })
       }
+      watch()
+
       onMounted(() => {
-        if (props.num > 1) {
-          page.value.next = 2
-        }
+        pagination({ num: props.num, type: 'DEFAULT' })
       })
       return { page, handleArrows, handleButton }
     },

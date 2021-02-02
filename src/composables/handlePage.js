@@ -1,12 +1,18 @@
 import { ref } from 'vue'
 const handlePage = () => {
   const page = ref({
-    previous: 2,
-    next: 2,
+    previous: null,
+    next: null,
     current: 1,
   })
   const pagination = (action) => {
     switch (action.type) {
+      case 'DEFAULT':
+        page.value.current = 1
+        page.value.previous = null
+        action.num > 1 ? (page.value.next = 2) : (page.value.next = null)
+
+        return page
       case 'PREVIOUS':
         if (page.value.current - 1 > 0) {
           page.value.current = page.value.current - 1
