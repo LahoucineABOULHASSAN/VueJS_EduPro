@@ -8,7 +8,7 @@
       :modelValue="searchItem"
       @update:modelValue="searchItem = $event.toLowerCase()"
     />
-    <div v-if="data">
+    <div v-if="filterResults">
       <div class="row mb-4">
         <Course
           v-for="course in filterResults"
@@ -22,11 +22,7 @@
         @changePage="handlePagination($event)"
       />
     </div>
-    <div v-else>
-      <p class="alert text-center alert-danger" role="alert">
-        No Courses Found!!
-      </p>
-    </div>
+    <Error v-else :error="error" />
   </section>
 </template>
 
@@ -34,6 +30,7 @@
   import Course from './Course'
   import SearchForm from '../../components/main/SearchForm'
   import Pages from '../../components/main/Pages'
+  import Error from '../../components/main/Error'
   import getData from '../../composables/getData'
   import paginateData from '../../composables/paginateData'
   import { computed, ref } from 'vue'
@@ -44,6 +41,7 @@
     components: {
       SearchForm,
       Pages,
+      Error,
       Course,
     },
     setup() {
@@ -60,6 +58,7 @@
           course.title.toLowerCase().includes(searchItem.value)
         )
         numPages.value = arr.length
+        error.value = arr.length ? null : 'Ooops!, No similar results found'
         const res = paginateData(arr, currentPage.value, 3)
         return res
       })

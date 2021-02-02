@@ -1,20 +1,22 @@
 <template>
   <section id="reviews">
     <h5 class="text-center mb-4">Our Student's Reviews</h5>
-    <div class="row">
+    <div v-if="data.length" class="row">
       <Review v-for="review in data" :key="review.id" :review="review" />
     </div>
+    <Error v-else :error="error" />
   </section>
 </template>
 
 <script>
   import Review from './Review'
+  import Error from '../../components/main/Error'
   import getData from '../../composables/getData'
   import { ref } from 'vue'
-  const URL = process.env.VUE_APP_STUDENTS_URL
+  const URL = 'process.env.VUE_APP_STUDENTS_URL'
   export default {
     name: 'Reviews',
-    components: { Review },
+    components: { Review, Error },
     setup() {
       const { data, error, fetchData } = getData(URL)
       fetchData()

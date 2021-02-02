@@ -6,7 +6,7 @@
       :modelValue="searchItem"
       @update:modelValue="searchItem = $event.toLowerCase()"
     />
-    <div v-if="data">
+    <div v-if="filterResults">
       <div class="row">
         <Teacher
           v-for="teacher in filterResults"
@@ -14,17 +14,13 @@
           :teacher="teacher"
         />
       </div>
+      <Pages
+        v-if="Math.ceil(numPages / 4)"
+        :num="Math.ceil(numPages / 4)"
+        @changePage="handlePagination($event)"
+      />
     </div>
-    <div v-else>
-      <p class="alert text-center alert-danger" role="alert">
-        No Data Found!!
-      </p>
-    </div>
-    <Pages
-      v-if="Math.ceil(numPages / 4)"
-      :num="Math.ceil(numPages / 4)"
-      @changePage="handlePagination($event)"
-    />
+    <Error v-else :error="error" />
   </section>
 </template>
 
@@ -32,6 +28,7 @@
   import Teacher from './Teacher'
   import SearchForm from '../../components/main/SearchForm'
   import Pages from '../../components/main/Pages'
+  import Error from '../../components/main/Error'
   import getData from '../../composables/getData'
   import { ref, computed } from 'vue'
   import paginateData from '../../composables/paginateData'
@@ -43,6 +40,7 @@
       Teacher,
       SearchForm,
       Pages,
+      Error,
     },
     setup() {
       const searchItem = ref('')
@@ -58,6 +56,7 @@
           teacher.name.toLowerCase().includes(searchItem.value)
         )
         numPages.value = arr.length
+        error.value = arr.length ? null : 'Ooops!, No similar results found'
         const res = paginateData(arr, currentPage.value, 4)
         return res
       })

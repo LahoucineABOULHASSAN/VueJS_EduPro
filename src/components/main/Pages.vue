@@ -52,7 +52,7 @@
 
 <script>
   import handlePage from '../../composables/handlePage'
-  import { onMounted, onUpdated, ref, watch } from 'vue'
+  import { onMounted, onUpdated, ref } from 'vue'
   export default {
     name: 'Pages',
     props: {
@@ -72,8 +72,6 @@
         page.value.current = i
         pagination({ num: props.num, type: 'CURRENT' })
       }
-      watch()
-
       onMounted(() => {
         pagination({ num: props.num, type: 'DEFAULT' })
       })
