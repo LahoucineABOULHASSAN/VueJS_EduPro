@@ -11,19 +11,6 @@
     </a>
     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
       <li>
-        <a href="#about-us" class="dropdown-item" @click="isActive">
-          About
-        </a>
-      </li>
-      <li>
-        <a href="contact-us" class="dropdown-item" @click="isActive">
-          Contact Us
-        </a>
-      </li>
-      <li>
-        <hr class="dropdown-divider" />
-      </li>
-      <li>
         <a href="#login" class="dropdown-item" @click="isActive">
           Login
         </a>

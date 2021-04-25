@@ -2,21 +2,21 @@
   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
       <a
-        href="#home"
+        href="/courses"
         class="nav-link isActive"
         aria-current="page"
         @click="isActive"
-        >Courses</a
+        >home</a
       >
     </li>
-    <li class="nav-item">
-      <a href="#home" class="nav-link" @click="isActive">
-        Teachers
+    <li>
+      <a href="#about" class="nav-link" @click="isActive">
+        About
       </a>
     </li>
-    <li class="nav-item">
-      <a href="#reviews" class="nav-link" @click="isActive">
-        Reviews
+    <li>
+      <a href="#contact-us" class="nav-link" @click="isActive">
+        Contact Us
       </a>
     </li>
     <DropDown :isActive="isActive" />

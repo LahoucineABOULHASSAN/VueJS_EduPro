@@ -26,7 +26,6 @@
     <Services />
   </main>
 </template>
-
 <script>
   import Features from '../components/main/Features'
   import Services from '../components/main/Services'
