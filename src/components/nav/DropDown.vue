@@ -11,13 +11,13 @@
     </a>
     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
       <li>
-        <a href="#login" class="dropdown-item" @click="isActive">
-          Login
+        <a class="dropdown-item" @click="isActive" data-id="services">
+          services
         </a>
       </li>
       <li>
-        <a href="#sign-up" class="dropdown-item" @click="isActive">
-          Sign up
+        <a class="dropdown-item" @click="isActive" data-id="sign-up">
+          login & sign up
         </a>
       </li>
     </ul>
@@ -25,10 +25,10 @@
 </template>
 
 <script>
-  export default {
-    name: 'DropDown',
-    props: {
-      isActive: Function,
-    },
-  }
+export default {
+  name: "DropDown",
+  props: {
+    isActive: Function,
+  },
+};
 </script>

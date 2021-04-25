@@ -1,5 +1,5 @@
 <template>
-  <div class="col contact-us">
+  <div id="contact" class="col contact-us">
     <h2 class="mb-4">Contact Us</h2>
     <form>
       <input
@@ -27,9 +27,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'ContactUs',
-  }
+export default {
+  name: "ContactUs",
+};
 </script>
 
 <style></style>
