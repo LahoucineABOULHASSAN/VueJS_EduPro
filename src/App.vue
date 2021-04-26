@@ -32,6 +32,9 @@ export default {
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
 }
+* {
+  transition: all 0.7s ease-in-out;
+}
 html {
   scroll-behavior: smooth;
 }
