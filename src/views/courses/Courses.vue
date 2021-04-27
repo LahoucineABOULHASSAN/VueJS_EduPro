@@ -8,7 +8,7 @@
       :modelValue="searchItem"
       @update:modelValue="searchItem = $event.toLowerCase()"
     />
-    <div v-if="filterResults">
+    <div v-if="data.length">
       <div class="row mb-4">
         <Course
           v-for="course in filterResults"
