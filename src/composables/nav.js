@@ -15,7 +15,6 @@ export const isActive = (event) => {
   });
 };
 export const scrollTo = (elem) => {
-  console.log(elem);
   const sticky = document.querySelector("#" + elem).offsetTop;
   document.body.scrollTop = sticky - 30; // For Safari
   document.documentElement.scrollTop = sticky - 30;
