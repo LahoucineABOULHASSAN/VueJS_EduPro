@@ -25,7 +25,7 @@ To use and test the app on your pc or mac make sure you follow the instructions 
 
 # links
 
-[my portfolio](https://vueportfolioapp.netlify.app).
+[my portfolio](https://aboulhassan.netlify.app/).
 [my github](https://github.com/LahoucineABOULHASSAN).
 [image source website](https://unsplash.com/).
 
@@ -37,7 +37,7 @@ To use and test the app on your pc or mac make sure you follow the instructions 
 
 MIT License
 
-Copyright (c) [2021][lahoucine aboulhassan](https://vueportfolioapp.netlify.app).
+Copyright (c) [2021][lahoucine aboulhassan](https://aboulhassan.netlify.app/).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
